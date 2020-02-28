@@ -167,19 +167,6 @@ class ToDoListTest(unittest.TestCase):
             self.assertEqual("Incomplete Tasks:\n\n1. Have Lunch at 1:00pm\n2. Send Email at 3:00\n3. Meeting at 4:00",
                              all_tasks)
 
-    @patch('builtins.input', return_value="")
-    def test_when_saving_empty_tasks_in_a_file(self, mock_input):
-        formatter = Format()
-        todo = ToDoList(formatter)
-        todo.save_task()
-        with patch('sys.stdout', new=StringIO()) as fake_out:
-            with open("MyTasks.txt", "r") as file:
-                content = file.readlines()
-            all_tasks = ""
-            for _ in content:
-                all_tasks += _
-            self.assertEqual("Your TODO list is empty!", all_tasks)
-
     def test_when_TODO_list_is_empty_then_no_task_to_delete(self):
         formatter = Format()
         todo = ToDoList(formatter)
